@@ -1,0 +1,59 @@
+import 'react-native-gesture-handler';
+import * as React from 'react';
+
+import { View, Text, StatusBar, StyleSheet} from 'react-native';
+import LoginMpinScreen from './src/screens/LoginMpinScreen';
+import Home from './src/screens/HomeScreen';
+import MyTabs from './src/navigators/navigation'
+
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+
+//Import native-stack navigator like this
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SettingsScreen from './src/screens/SettingsScreen';
+import Claims from './src/screens/SubmitClaim';
+import Profile from './src/screens/MyProfile';
+// import App1 from './src/screens/OktaLogin';
+
+//Create Native-Stack Navigator like this
+const Stack = createNativeStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
+const Drawer = createDrawerNavigator();
+
+
+
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <StatusBar backgroundColor='#000c5b'/>
+    <Stack.Navigator
+      initialRouteName="OktaLogin" style={styles.container}
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="OktaLogin" component={LoginMpinScreen} options={{headerShown: false}} />
+      <Stack.Screen name="BottomTabStack" component={MyTabs} options={{headerShown: false}} />
+
+    </Stack.Navigator>
+    </NavigationContainer>
+    // <>
+    //   <View>
+    //     <Text>Hello world</Text>
+    //   </View>
+    // </>
+  );
+};
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+
+export default App;
